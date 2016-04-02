@@ -10,7 +10,7 @@ namespace UnitTests
     public class GameOfLifeTests
     {
         [TestMethod]
-        public void GetNeighBours()
+        public void GetNeighbors()
         {
             var dic=new Dictionary<string,Cell>();
             var cell0=new Cell(-1,-1);
@@ -31,23 +31,23 @@ namespace UnitTests
             dic.Add(cell6.ToString(),cell6);
             dic.Add(cell7.ToString(),cell7);
 
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==8);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==8);
             dic.Remove(cell0.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==7);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==7);
             dic.Remove(cell1.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==6);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==6);
             dic.Remove(cell2.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==5);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==5);
             dic.Remove(cell3.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==4);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==4);
             dic.Remove(cell4.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==3);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==3);
             dic.Remove(cell5.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==2);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==2);
             dic.Remove(cell6.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==1);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==1);
             dic.Remove(cell7.ToString());
-            Assert.IsTrue(new Cell(0, 0).GetCauntOfNeighbours(dic)==0);
+            Assert.IsTrue(new Cell(0, 0).GetCountOfNeighbors(dic)==0);
         }
 
 

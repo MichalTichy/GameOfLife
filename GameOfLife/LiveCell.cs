@@ -10,13 +10,23 @@ namespace GameOfLife
         public readonly int X;
         public readonly int Y;
 
+        /// <summary>
+        /// Creates new cell.
+        /// </summary>
+        /// <param name="x">X coordinate</param>
+        /// <param name="y">Y coordinate</param>
         public Cell(int x, int y)
         {
             Y = y;
             X = x;
         }
 
-        public int GetCauntOfNeighbours(Dictionary<string, Cell> cells)
+        /// <summary>
+        /// Gets count of sorounding neighbors.
+        /// </summary>
+        /// <param name="cells">All alive cells in current world.</param>
+        /// <returns>Count of sorounding neighbors. Possible values are 0 - 9</returns>
+        public int GetCountOfNeighbors(Dictionary<string, Cell> cells)
         {
             int count = 0;
             for (int x = -1; x < 2; x++)
@@ -30,6 +40,10 @@ namespace GameOfLife
             return count;
         }
 
+        /// <summary>
+        /// String representation of cells coordinates.
+        /// </summary>
+        /// <returns>xCord|yCord</returns>
         public override string ToString()
         {
             return $"{X}|{Y}";

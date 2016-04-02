@@ -10,9 +10,12 @@ namespace GameOfLife
     public class World
     {
         private readonly Dictionary<string, Cell> _cells;
-
         public Cell[] Cells => _cells.Values.ToArray();
 
+        /// <summary>
+        /// Create new world from given celtls.
+        /// </summary>
+        /// <param name="cells">alive cells</param>
         public World(IEnumerable<Cell> cells)
         {
             _cells=new Dictionary<string, Cell>();
@@ -26,14 +29,21 @@ namespace GameOfLife
             _cells = cells;
         }
 
+        /// <summary>
+        /// Generates new iteration of world.
+        /// </summary>
         public World NextMove()
         {
             Dictionary<string, Cell> liveCells= _cells.Where(liveCell => WillBeCellAliveInNextTurn(liveCell.Value, true)).ToDictionary(x => x.Key, x => x.Value);
-            AddNewBornsToDictionary(liveCells);
+            AddNewbornsToDictionary(liveCells);
             return new World(liveCells);
         }
 
-        private void AddNewBornsToDictionary(IDictionary<string, Cell> dictionary)
+        /// <summary>
+        /// Adds all cells that will be born in next move to the dictionary.
+        /// </summary>
+        /// <param name="dictionary">current living cells</param>
+        private void AddNewbornsToDictionary(IDictionary<string, Cell> dictionary)
         {
             var allreadyTested=new Dictionary<string, Cell>();
 
@@ -57,12 +67,22 @@ namespace GameOfLife
             }
         }
 
+        /// <summary>
+        /// Implementation of the rules of Conway's Game of Life.
+        /// Any live cell with fewer than two live neighbors dies, as if caused by under-population.
+        ///  Any live cell with two or three live neighbors lives on to the next generation.
+        ///  Any live cell with more than three live neighbors dies, as if by over-population.
+        ///  Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+        /// </summary>
+        /// <param name="cell">Cell in current move</param>
+        /// <param name="isAlive">State of cell</param>
+        /// <returns>Whether will be given cell alive in next move.</returns>
         private bool WillBeCellAliveInNextTurn(Cell cell,bool isAlive)
         {
-            int countOfNeighbours = cell.GetCauntOfNeighbours(_cells);
+            int countOfNeighbors = cell.GetCountOfNeighbors(_cells);
             if (isAlive)
-                return countOfNeighbours == 2 || countOfNeighbours == 3;
-            return countOfNeighbours == 3;
+                return countOfNeighbors == 2 || countOfNeighbors == 3;
+            return countOfNeighbors == 3;
         }
     }
 }
